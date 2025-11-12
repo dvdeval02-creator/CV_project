@@ -1,25 +1,3 @@
-﻿"""
-unified_tracker.py - Complete Multi-Target Tracking System
-Combines visual features with UID assignment and video recording
-
-Features:
-- Color-coded tracking with numbered IDs
-- User-assigned UID mapping
-- Path visualization for selected targets
-- Video recording capability
-- Console-based control interface
-- Compatible with Visual Studio 2022
-
-Console Commands:
-  [ID]           - Select target by ID (e.g., 1, 2, 3)
-  assign [ID] [UID] - Assign custom UID to tracker ID
-  unassign [ID]  - Remove UID assignment
-  list           - Show all active targets and UIDs
-  clear          - Clear target selection
-  record         - Start/stop video recording
-  quit / q       - Exit application
-"""
-
 import time
 import cv2
 import numpy as np
@@ -158,10 +136,7 @@ def convert_to_deepsort_format(detections, frame_shape):
     return deepsort_detections
 
 def get_color_for_track(track_id, num_targets, selected_id, has_uid=False):
-    """
-    Get color for track visualization.
-    Priority: UID assigned > Selected > Number of targets
-    """
+
     # UID assigned = Magenta
     if has_uid:
         return (255, 0, 255)
@@ -183,7 +158,7 @@ def get_color_for_track(track_id, num_targets, selected_id, has_uid=False):
         return (0, 0, 255)  # Red
 
 def draw_path_visualization(track_id, path_history, uid=None):
-    """Create path visualization window for selected target"""
+   
     canvas = np.zeros((PATH_WINDOW_SIZE[1], PATH_WINDOW_SIZE[0], 3), dtype=np.uint8)
     
     # Grid
